@@ -1,23 +1,54 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script type="text/javascript" src="employes.js"></script>
 </head>
+
 <body>
     <script type="text/javascript">
-let employes1 = new Employe("jojo", "Pasco",2019,"comptable",15000,"comptabilité");
+        
+        let employe1 = new Employes("Dumoulin", "Pasco", "2020-06-06", "Comptable", 15000, "Comptabilité");
+        let employe2 = new Employes("Gat", "Réné","1995-01-05","Commercial", 25000,"Vente");
+        let employe3 = new Employes("Desseine", "Léo","2010-10-04","Commercial", 25000,"Vente");
+        let employe4 = new Employes("Anssieux", "Cécile","2015-11-07","Comptable", 13000,"Comptabilité");
+        let employe5 = new Employes("Poré", "Maëva","2000-01-05","Archiviste", 18000,"Secrétariat");
+        
+     
+        employe1.primeAnnuel()
+        employe2.primeAnnuel()
+        employe3.primeAnnuel()
+        employe4.primeAnnuel()
+        employe5.primeAnnuel()
+        
 
-employes1.Anciennete(2023)
+        employe1.getAnciennete()
+        employe3.getAnciennete()
+        
+        console.log("L'employé travail "+employe3.nom+ " ici depuis", +employe3.getAnciennete() + " ans");
+
+  
+
+    table_employe = [employe1,employe2,employe3,employe4,employe5];
+    
+  
+    nombreEmploye = table_employe.length;
+    console.log(nombreEmploye)
+   
+  /* table_employe.forEach(function(employe){
+        console.log(employe.nom);
+
+ });*/
+
 
 
 
 
     </script>
-    
+
 </body>
+
 </html>
-
-
