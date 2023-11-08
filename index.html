@@ -10,40 +10,74 @@
 
 <body>
     <script type="text/javascript">
-        
-        let employe1 = new Employes("Dumoulin", "Pasco", "2020-06-06", "Comptable", 15000, "Comptabilité");
-        let employe2 = new Employes("Gat", "Réné","1995-01-05","Commercial", 25000,"Vente");
-        let employe3 = new Employes("Desseine", "Léo","2010-10-04","Commercial", 25000,"Vente");
-        let employe4 = new Employes("Anssieux", "Cécile","2015-11-07","Comptable", 13000,"Comptabilité");
-        let employe5 = new Employes("Poré", "Maëva","2000-01-05","Archiviste", 18000,"Secrétariat");
-        
-     
+        let agence1 = new Agences("Afpa", "6 allée des acajous", 51000, "Châlons-en-Champagne", "resto Entreprise");
+        let agence2 = new Agences("Afpa", "6 allée des acajous", 51300, "Vitry-le-François", "Ticket resto");
+
+
+        let employe1 = new Employes("Dumoulin", "Pasco", "2023-06-06", "Comptable", 15000, "Comptabilité", agence1);
+        let employe2 = new Employes("Gat", "Réné", "1995-01-05", "Commercial", 25000, "Vente", agence1);
+        let employe3 = new Employes("Desseine", "Léo", "2010-10-04", "Commercial", 25000, "Vente", agence2);
+        let employe4 = new Employes("Anssieux", "Cécile", "2015-11-07", "Comptable", 13000, "Comptabilité", agence2);
+        let employe5 = new Employes("Poré", "Maëva", "2000-01-05", "Archiviste", 18000, "Secrétariat", agence1);
+
+
+
         employe1.primeAnnuel()
         employe2.primeAnnuel()
         employe3.primeAnnuel()
         employe4.primeAnnuel()
         employe5.primeAnnuel()
-        
+
 
         employe1.getAnciennete()
         employe3.getAnciennete()
-        
-        console.log("L'employé travail "+employe3.nom+ " ici depuis", +employe3.getAnciennete() + " ans");
 
-  
+        console.log("L'employé travail " + employe3.nom + " ici depuis", +employe3.getAnciennete() + " ans");
 
-    table_employe = [employe1,employe2,employe3,employe4,employe5];
-    
-  
-    nombreEmploye = table_employe.length;
-    console.log(nombreEmploye)
-   
-  /* table_employe.forEach(function(employe){
-        console.log(employe.nom);
-
- });*/
+        table_employe = [employe1, employe2, employe3, employe4, employe5];
+        console.log(table_employe.length);
 
 
+        function tri_tableau(a, b) {
+
+            if (a.service != b.service) {
+                return (a.service > b.service) ? 1 : -1;
+            }
+            if (a.nom != b.nom) {
+                return (a.nom > b.nom) ? 1 : -1;
+            }
+            if (a.prenom != b.prenom) {
+                return (a.prenom > b.prenom) ? 1 : -1;
+            }
+            return 0;
+        }
+
+
+        table_employe.sort(tri_tableau)
+        console.log(table_employe);
+        //fin tri tableau
+
+        let masseSalariale = 0;
+        for (let i = 0; i < table_employe.length; i++) {
+
+            masseSalariale = table_employe[i].primeAnnuel() + masseSalariale;
+
+        }
+        console.log("total mass Salarial " + masseSalariale);
+
+        console.log(employe1.nom, agence1.nom, agence1.mode_de_restauration);
+
+
+
+        function ajoutAgence() {
+
+            for (let i = 0; i < table_employe.length; i++) {
+                console.log(table_employe[i].nom + " " + table_employe[i].agence.mode_de_restauration);
+            }
+
+        }
+
+        console.log(table_employe)
 
 
 
