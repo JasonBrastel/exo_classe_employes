@@ -4,37 +4,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Document</title>
+    
+    <link href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" rel="stylesheet">
+    
+    <script src= "https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    
+    
+    <script type="text/javascript" src="agence.js"></script>
+    <script type="text/javascript" src="enfants.js"></script>  
     <script type="text/javascript" src="employes.js"></script>
-</head>
+    <script type="text/javascript" src="directeur.js"></script>
 
 <body>
     <script type="text/javascript">
+
         let agence1 = new Agences("Afpa", "6 allée des acajous", 51000, "Châlons-en-Champagne", "resto Entreprise");
-        let agence2 = new Agences("Afpa", "6 allée des acajous", 51300, "Vitry-le-François", "Ticket resto");
+        let agence2 = new Agences("Vediorbis", "6 allée des acajous", 51300, "Vitry-le-François", "Ticket resto");
+
+        let enfant1 = new Enfants(1);
+        let enfant2 = new Enfants(8);
+        let enfant3 = new Enfants(16);
+        let enfant4 = new Enfants(4);
+        let enfant5 = new Enfants(18);
 
 
-        let employe1 = new Employes("Dumoulin", "Pasco", "2023-06-06", "Comptable", 15000, "Comptabilité", agence1);
-        let employe2 = new Employes("Gat", "Réné", "1995-01-05", "Commercial", 25000, "Vente", agence1);
-        let employe3 = new Employes("Desseine", "Léo", "2010-10-04", "Commercial", 25000, "Vente", agence2);
-        let employe4 = new Employes("Anssieux", "Cécile", "2015-11-07", "Comptable", 13000, "Comptabilité", agence2);
-        let employe5 = new Employes("Poré", "Maëva", "2000-01-05", "Archiviste", 18000, "Secrétariat", agence1);
+
+        //tableau enfant
+
+        let table_enfant_employe1 = [enfant1, enfant2];
+        let table_enfant_employe2 = [enfant3];
+        let table_enfant_employe3 = [];
+        let table_enfant_employe4 = [enfant4];
+        let table_enfant_employe5 = [enfant5];
 
 
 
-        employe1.primeAnnuel()
-        employe2.primeAnnuel()
-        employe3.primeAnnuel()
-        employe4.primeAnnuel()
-        employe5.primeAnnuel()
+        let directeur =new Directeur("Lecointre","Jean-Guy","1990-10-30","Directeur",40000,"Ressource Humaine",agence1,table_enfant_employe3);
+
+        let employe1 = new Employes("Dumoulin", "Pasco", "2023-06-06", "Comptable", 15000, "Comptabilité", agence1, table_enfant_employe1);
+        let employe2 = new Employes("Gat", "Réné", "1995-01-05", "Commercial", 25000, "Vente", agence1, table_enfant_employe2);
+        let employe3 = new Employes("Desseine", "Léo", "2010-10-04", "Commercial", 25000, "Vente", agence2, table_enfant_employe3);
+        let employe4 = new Employes("Anssieux", "Cécile", "2015-11-07", "Comptable", 13000, "Comptabilité", agence2, table_enfant_employe4);
+        let employe5 = new Employes("Poré", "Maëva", "2000-01-05", "Archiviste", 18000, "Secrétariat", agence1, table_enfant_employe5);
 
 
-        employe1.getAnciennete()
-        employe3.getAnciennete()
+        employe1.primeAnnuel();
+        employe2.primeAnnuel();
+        employe3.primeAnnuel();
+        employe4.primeAnnuel();
+        employe5.primeAnnuel();
 
-        console.log("L'employé travail " + employe3.nom + " ici depuis", +employe3.getAnciennete() + " ans");
+    console.log("L'employé travail " + employe1.nom + " ici depuis", +employe1.getAnciennete() + " ans");
 
-        table_employe = [employe1, employe2, employe3, employe4, employe5];
+
+        
+
+        table_employe = [employe1, employe2, employe3, employe4, employe5,directeur];
+
         console.log(table_employe.length);
 
 
@@ -57,6 +86,9 @@
         console.log(table_employe);
         //fin tri tableau
 
+
+        //Mass salarial
+
         let masseSalariale = 0;
         for (let i = 0; i < table_employe.length; i++) {
 
@@ -67,7 +99,7 @@
 
         console.log(employe1.nom, agence1.nom, agence1.mode_de_restauration);
 
-
+        //fin mass salarial
 
         function ajoutAgence() {
 
@@ -77,12 +109,66 @@
 
         }
 
-        console.log(table_employe)
 
+
+
+//billet noel
+
+        for (let i = 0; i < table_employe.length; i++) {
+            let billet20 = 0;
+            let billet30 = 0;
+            let billet50 = 0;
+            for (let j = 0; j < table_employe[i].enfant.length; j++) {
+
+                if (table_employe[i].enfant[j].age <= 10) {
+                    billet20++
+
+
+                    console.log(table_employe[i].nom, billet20 + "  cheque noel")
+
+                }
+                if (table_employe[i].enfant[j].age >= 11 && table_employe[i].enfant[j].age <= 15) {
+                    billet30++
+
+
+                }
+                if (table_employe[i].enfant[j].age >= 16 && table_employe[i].enfant[j].age <= 18) {
+                    billet50++
+
+
+
+                }
+            }
+
+        }
+
+
+        console.log(directeur.primeAnnuelDirecteur())
+
+
+
+        /*table_employe.push(table_enfant);
+        console.log(table_employe)*/
 
 
     </script>
 
+<table id="example" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Date d'embauche</th>
+            <th>Poste</th>
+            <th>Salaire</th>
+            <th>Service</th>
+            <th>Agence</th>
+            <th>Nombre d'enfants</th>
+        </tr>
+
+    </tfoot>
+</table>
+<script type="text/javascript" src="main.js"></script>
 </body>
 
 </html>
